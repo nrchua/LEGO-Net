@@ -44,7 +44,7 @@ room_info = {
 class TDFDataset:
     '''3D-Front Dataset'''
 
-    def __init__(self, room_type, use_augment=True, livingroom_only=False, print_info=True):
+    def __init__(self, room_type, use_augment=True, livingroom_only=False, print_info=True, sceneprog_data_path="sceneprog_dataset.npz"):
         """ Currently all scenes_tv (test+validation) are used in training, and validation uses test.
             bedroom:                       len(self.scenes_tv)=5668,  len(self.scenes_test)=224
                 augmened:                  len(self.scenes_tv)=22672, len(self.scenes_test)=896
@@ -90,8 +90,8 @@ class TDFDataset:
         else:
             if os.path.exists(os.path.join(self.scene_dir, "data_tv_ctr.npz")):
                 self.data_tv = np.load( os.path.join(self.scene_dir, "data_tv_ctr.npz"), allow_pickle=True)
-            if os.path.exists(os.path.join(self.scene_dir, "data_test_ctr.npz")):
-                self.data_test = np.load( os.path.join(self.scene_dir, "data_test_ctr.npz"), allow_pickle=True)
+            if os.path.exists(os.path.join(self.scene_dir, sceneprog_data_path)):
+                self.data_test = np.load( os.path.join(self.scene_dir, sceneprog_data_path), allow_pickle=True)
 
         with open(os.path.join(self.scene_dir, "dataset_stats_all.txt")) as f:
             # Same regardless of if only living room (ctr.npz processed from boxes.npz, generated in one go from ATISS for all living+livingdiningrooms)
@@ -358,7 +358,7 @@ class TDFDataset:
             total_data_count = self.data_test['pos'].shape[0]
         elif data_partition=='all':
             total_data_count = self.data_tv['pos'].shape[0] + self.data_test['pos'].shape[0]
-        return np.random.choice(total_data_count, size=batch_size, replace=False)   # False: each data can be selected once # (batch_size,)
+        return np.random.choice(total_data_count, size=batch_size, replace=True)   # False: each data can be selected once # (batch_size,)
     
     def gen_stratified_selection(self, n_to_select, data_partition='test'):
         """ Only makes sense for augmented dataset. Select at least 1 from each original scene, and the (n_to_select-n_original_scene) scenes
