@@ -1,0 +1,11 @@
+python -m venv sceneprog;
+source ./sceneprog/bin/activate;
+pip install torch==2.1.2;
+pip install torchvision==0.16.2;
+pip install trimesh;
+pip install ortools;
+pip install --upgrade h5py==3.7.0;
+pip install opencv-python-headless;
+pip install --upgrade matplotlib==3.5.3;
+pip install --upgrade numpy==1.21.6;
+pip install scikit-learn;
