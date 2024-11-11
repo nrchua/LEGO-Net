@@ -8,3 +8,53 @@
 - In `filepath.py`, set the `home_dir` variable to the parent directory (ex: `home_dir="/nick-data/sceneprog/LEGO-Net"`)
 - When ready to run, activate the venv `source ./sceneprog/bin/activate`
 - Then call `./inference.sh` to begin inference. Results will be saved in `./checkpoints`
+
+# Class List Encoding
+## Bedroom
+```
+["armchair", 
+"bookshelf", 
+"cabinet", 
+"chair", 
+"children_cabinet",
+ "coffee_table", 
+"desk", 
+"double_bed", 
+"dressing_chair", 
+"dressing_table",
+ "kids_bed", 
+"nightstand", 
+"shelf", 
+"single_bed", 
+"sofa", 
+"stool", 
+"table", 
+"tv_stand", 
+"wardrobe"]
+```
+
+## Living Room
+```
+["armchair", 
+"bookshelf", 
+"cabinet", 
+"chaise_longue_sofa", 
+"chinese_chair",
+ "coffee_table", 
+"console_table", 
+"corner_side_table", 
+"desk", 
+"dining_chair", 
+"dining_table", 
+"l_shaped_sofa", 
+"lazy_sofa", 
+"lounge_chair", 
+"loveseat_sofa", 
+"multi_seat_sofa",
+ "round_end_table", 
+"shelf", 
+"stool", 
+"tv_stand", 
+"wardrobe", 
+"wine_cabinet"]
+```
