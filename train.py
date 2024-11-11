@@ -515,7 +515,10 @@ def logsavedir_from_args(args):
             return os.path.join(f"{dateprefix}_{args['room_type']}", f"{args['timestamp']}_{cons}") # _livonly{args['livingroom_only']}_aug{args['use_augment']}_{args['loss_func']}_{args['floorplan_encoder_type']}
     
     elif args['train']==0 and args['compareeval']==0:
-        numiterk = int(int(os.path.split(args['model_path'])[-1][:-7]) / 1000)
+        checkpoint_name = os.path.split(args['model_path'])[-1][:-7]
+        total_iters = checkpoint_name.split("_")[-1]
+        numiterk = int(int(total_iters) / 1000)
+        # numiterk = int(int(os.path.split(args['model_path'])[-1][:-7]) / 1000)
         if args['data_type']!="3dfront":
             return os.path.join(os.path.split(args['model_path'])[0], f"E_{args['timestamp']}_{numiterk}k") 
         else:

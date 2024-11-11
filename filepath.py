@@ -1,7 +1,7 @@
 import os
 
 ### Top-most directory path
-home_dir  = ""
+home_dir  = "/nick-data/sceneprog/legonet-wrapper/LEGO-Net"
 
 
 ### 3D-FRONT dataset (optional)
